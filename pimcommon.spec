@@ -5,18 +5,18 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : pimcommon
-Version  : 18.08.0
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.08.0/src/pimcommon-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/pimcommon-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/pimcommon-18.08.0.tar.xz.sig
+Version  : 18.12.2
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.2/src/pimcommon-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/pimcommon-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/pimcommon-18.12.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
-Requires: pimcommon-lib
-Requires: pimcommon-license
-Requires: pimcommon-locales
-Requires: pimcommon-data
+Requires: pimcommon-data = %{version}-%{release}
+Requires: pimcommon-lib = %{version}-%{release}
+Requires: pimcommon-license = %{version}-%{release}
+Requires: pimcommon-locales = %{version}-%{release}
 BuildRequires : akonadi-contacts-dev
 BuildRequires : akonadi-dev
 BuildRequires : boost-dev
@@ -28,7 +28,7 @@ BuildRequires : kimap-dev
 BuildRequires : kmime-dev
 BuildRequires : kpimtextedit-dev
 BuildRequires : libkdepim-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 No detailed description available
@@ -44,9 +44,9 @@ data components for the pimcommon package.
 %package dev
 Summary: dev components for the pimcommon package.
 Group: Development
-Requires: pimcommon-lib
-Requires: pimcommon-data
-Provides: pimcommon-devel
+Requires: pimcommon-lib = %{version}-%{release}
+Requires: pimcommon-data = %{version}-%{release}
+Provides: pimcommon-devel = %{version}-%{release}
 
 %description dev
 dev components for the pimcommon package.
@@ -55,8 +55,8 @@ dev components for the pimcommon package.
 %package lib
 Summary: lib components for the pimcommon package.
 Group: Libraries
-Requires: pimcommon-data
-Requires: pimcommon-license
+Requires: pimcommon-data = %{version}-%{release}
+Requires: pimcommon-license = %{version}-%{release}
 
 %description lib
 lib components for the pimcommon package.
@@ -79,26 +79,26 @@ locales components for the pimcommon package.
 
 
 %prep
-%setup -q -n pimcommon-18.08.0
+%setup -q -n pimcommon-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535435845
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549860504
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535435845
+export SOURCE_DATE_EPOCH=1549860504
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/pimcommon
-cp COPYING %{buildroot}/usr/share/doc/pimcommon/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/doc/pimcommon/COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/pimcommon
+cp COPYING %{buildroot}/usr/share/package-licenses/pimcommon/COPYING
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/pimcommon/COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -135,7 +135,6 @@ popd
 /usr/include/KF5/PimCommon/LineEditWithAutoCorrection
 /usr/include/KF5/PimCommon/LineEditWithCompleterNg
 /usr/include/KF5/PimCommon/LogActivitiesManager
-/usr/include/KF5/PimCommon/MetaType
 /usr/include/KF5/PimCommon/MigrateApplicationFiles
 /usr/include/KF5/PimCommon/MigrateFileInfo
 /usr/include/KF5/PimCommon/MinimumComboBox
@@ -144,6 +143,7 @@ popd
 /usr/include/KF5/PimCommon/PimCommonSettings
 /usr/include/KF5/PimCommon/PimUtil
 /usr/include/KF5/PimCommon/PluginUtil
+/usr/include/KF5/PimCommon/PurposeMenuWidget
 /usr/include/KF5/PimCommon/RenameFileDialog
 /usr/include/KF5/PimCommon/RichTexteditWithAutoCorrection
 /usr/include/KF5/PimCommon/ShareServiceUrlManager
@@ -173,6 +173,7 @@ popd
 /usr/include/KF5/pimcommon/autocorrection.h
 /usr/include/KF5/pimcommon/autocorrectionlanguage.h
 /usr/include/KF5/pimcommon/autocorrectionwidget.h
+/usr/include/KF5/pimcommon/config-pimcommon.h
 /usr/include/KF5/pimcommon/configureimmutablewidgetutils.h
 /usr/include/KF5/pimcommon/configureplugindialog.h
 /usr/include/KF5/pimcommon/configurepluginslistwidget.h
@@ -190,7 +191,6 @@ popd
 /usr/include/KF5/pimcommon/lineeditwithautocorrection.h
 /usr/include/KF5/pimcommon/lineeditwithcompleterng.h
 /usr/include/KF5/pimcommon/logactivitiesmanager.h
-/usr/include/KF5/pimcommon/metatype.h
 /usr/include/KF5/pimcommon/migrateapplicationfiles.h
 /usr/include/KF5/pimcommon/migratefileinfo.h
 /usr/include/KF5/pimcommon/minimumcombobox.h
@@ -202,6 +202,7 @@ popd
 /usr/include/KF5/pimcommon/pimcommonsettings.h
 /usr/include/KF5/pimcommon/pimutil.h
 /usr/include/KF5/pimcommon/pluginutil.h
+/usr/include/KF5/pimcommon/purposemenuwidget.h
 /usr/include/KF5/pimcommon/renamefiledialog.h
 /usr/include/KF5/pimcommon/richtexteditwithautocorrection.h
 /usr/include/KF5/pimcommon/shareserviceurlmanager.h
@@ -246,15 +247,15 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimCommon.so.5
-/usr/lib64/libKF5PimCommon.so.5.9.0
+/usr/lib64/libKF5PimCommon.so.5.10.2
 /usr/lib64/libKF5PimCommonAkonadi.so.5
-/usr/lib64/libKF5PimCommonAkonadi.so.5.9.0
+/usr/lib64/libKF5PimCommonAkonadi.so.5.10.2
 /usr/lib64/qt5/plugins/designer/pimcommonwidgets.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/pimcommon/COPYING
-/usr/share/doc/pimcommon/COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pimcommon/COPYING
+/usr/share/package-licenses/pimcommon/COPYING.LIB
 
 %files locales -f libpimcommon.lang
 %defattr(-,root,root,-)
