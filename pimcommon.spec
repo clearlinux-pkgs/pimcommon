@@ -6,11 +6,11 @@
 #
 Name     : pimcommon
 Version  : 18.12.2
-Release  : 3
+Release  : 4
 URL      : https://download.kde.org/stable/applications/18.12.2/src/pimcommon-18.12.2.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.2/src/pimcommon-18.12.2.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.2/src/pimcommon-18.12.2.tar.xz.sig
-Summary  : No detailed summary available
+Summary  : Common libraries for KDE PIM
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: pimcommon-data = %{version}-%{release}
@@ -86,15 +86,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549860504
+export SOURCE_DATE_EPOCH=1549919186
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549860504
+export SOURCE_DATE_EPOCH=1549919186
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pimcommon
 cp COPYING %{buildroot}/usr/share/package-licenses/pimcommon/COPYING
