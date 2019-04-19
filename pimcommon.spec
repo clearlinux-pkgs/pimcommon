@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : pimcommon
-Version  : 18.12.3
-Release  : 5
-URL      : https://download.kde.org/stable/applications/18.12.3/src/pimcommon-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/pimcommon-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/pimcommon-18.12.3.tar.xz.sig
+Version  : 19.04.0
+Release  : 6
+URL      : https://download.kde.org/stable/applications/19.04.0/src/pimcommon-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/pimcommon-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/pimcommon-19.04.0.tar.xz.sig
 Summary  : Common libraries for KDE PIM
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -25,6 +25,7 @@ BuildRequires : buildreq-kde
 BuildRequires : grantlee-dev
 BuildRequires : kcontacts-dev
 BuildRequires : kimap-dev
+BuildRequires : kimap-staticdev
 BuildRequires : kmime-dev
 BuildRequires : kpimtextedit-dev
 BuildRequires : libkdepim-dev
@@ -80,23 +81,22 @@ locales components for the pimcommon package.
 
 
 %prep
-%setup -q -n pimcommon-18.12.3
+%setup -q -n pimcommon-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552017312
+export SOURCE_DATE_EPOCH=1555686600
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552017312
+export SOURCE_DATE_EPOCH=1555686600
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pimcommon
 cp COPYING %{buildroot}/usr/share/package-licenses/pimcommon/COPYING
@@ -126,6 +126,7 @@ popd
 /usr/include/KF5/PimCommon/ConfigurePluginsListWidget
 /usr/include/KF5/PimCommon/ConfigurePluginsWidget
 /usr/include/KF5/PimCommon/CustomToolsPlugin
+/usr/include/KF5/PimCommon/CustomToolsPluginManager
 /usr/include/KF5/PimCommon/CustomToolsViewInterface
 /usr/include/KF5/PimCommon/CustomToolsWidgetng
 /usr/include/KF5/PimCommon/CustomTreeView
@@ -181,6 +182,7 @@ popd
 /usr/include/KF5/pimcommon/configurepluginslistwidget.h
 /usr/include/KF5/pimcommon/configurepluginswidget.h
 /usr/include/KF5/pimcommon/customtoolsplugin.h
+/usr/include/KF5/pimcommon/customtoolspluginmanager.h
 /usr/include/KF5/pimcommon/customtoolsviewinterface.h
 /usr/include/KF5/pimcommon/customtoolswidgetng.h
 /usr/include/KF5/pimcommon/customtreeview.h
@@ -198,7 +200,6 @@ popd
 /usr/include/KF5/pimcommon/minimumcombobox.h
 /usr/include/KF5/pimcommon/networkmanager.h
 /usr/include/KF5/pimcommon/networkutil.h
-/usr/include/KF5/pimcommon/pimcommon_debug.h
 /usr/include/KF5/pimcommon/pimcommon_export.h
 /usr/include/KF5/pimcommon/pimcommonsetting_base.h
 /usr/include/KF5/pimcommon/pimcommonsettings.h
@@ -228,7 +229,6 @@ popd
 /usr/include/KF5/pimcommonakonadi/incidencesforwidget.h
 /usr/include/KF5/pimcommonakonadi/mailutil.h
 /usr/include/KF5/pimcommonakonadi/manageserversidesubscriptionjob.h
-/usr/include/KF5/pimcommonakonadi/pimcommonakonadi_debug.h
 /usr/include/KF5/pimcommonakonadi/pimcommonakonadi_export.h
 /usr/include/KF5/pimcommonakonadi/plugininterface.h
 /usr/include/KF5/pimcommonakonadi/selectmulticollectiondialog.h
@@ -249,9 +249,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimCommon.so.5
-/usr/lib64/libKF5PimCommon.so.5.10.3
+/usr/lib64/libKF5PimCommon.so.5.11.0
 /usr/lib64/libKF5PimCommonAkonadi.so.5
-/usr/lib64/libKF5PimCommonAkonadi.so.5.10.3
+/usr/lib64/libKF5PimCommonAkonadi.so.5.11.0
 /usr/lib64/qt5/plugins/designer/pimcommonwidgets.so
 
 %files license
