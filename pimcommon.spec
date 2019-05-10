@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : pimcommon
-Version  : 19.04.0
-Release  : 7
-URL      : https://download.kde.org/stable/applications/19.04.0/src/pimcommon-19.04.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.0/src/pimcommon-19.04.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.0/src/pimcommon-19.04.0.tar.xz.sig
+Version  : 19.04.1
+Release  : 8
+URL      : https://download.kde.org/stable/applications/19.04.1/src/pimcommon-19.04.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.1/src/pimcommon-19.04.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.1/src/pimcommon-19.04.1.tar.xz.sig
 Summary  : Common libraries for KDE PIM
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -29,6 +29,7 @@ BuildRequires : kimap-staticdev
 BuildRequires : kmime-dev
 BuildRequires : kpimtextedit-dev
 BuildRequires : libkdepim-dev
+BuildRequires : purpose-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
@@ -48,6 +49,7 @@ Group: Development
 Requires: pimcommon-lib = %{version}-%{release}
 Requires: pimcommon-data = %{version}-%{release}
 Provides: pimcommon-devel = %{version}-%{release}
+Requires: pimcommon = %{version}-%{release}
 Requires: pimcommon = %{version}-%{release}
 
 %description dev
@@ -81,14 +83,14 @@ locales components for the pimcommon package.
 
 
 %prep
-%setup -q -n pimcommon-19.04.0
+%setup -q -n pimcommon-19.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557044728
+export SOURCE_DATE_EPOCH=1557499771
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -103,7 +105,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557044728
+export SOURCE_DATE_EPOCH=1557499771
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pimcommon
 cp COPYING %{buildroot}/usr/share/package-licenses/pimcommon/COPYING
@@ -256,9 +258,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimCommon.so.5
-/usr/lib64/libKF5PimCommon.so.5.11.0
+/usr/lib64/libKF5PimCommon.so.5.11.1
 /usr/lib64/libKF5PimCommonAkonadi.so.5
-/usr/lib64/libKF5PimCommonAkonadi.so.5.11.0
+/usr/lib64/libKF5PimCommonAkonadi.so.5.11.1
 /usr/lib64/qt5/plugins/designer/pimcommonwidgets.so
 
 %files license
