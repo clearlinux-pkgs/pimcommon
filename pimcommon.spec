@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : pimcommon
-Version  : 19.04.2
-Release  : 9
-URL      : https://download.kde.org/stable/applications/19.04.2/src/pimcommon-19.04.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.2/src/pimcommon-19.04.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.2/src/pimcommon-19.04.2.tar.xz.sig
+Version  : 19.04.3
+Release  : 10
+URL      : https://download.kde.org/stable/applications/19.04.3/src/pimcommon-19.04.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.3/src/pimcommon-19.04.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.3/src/pimcommon-19.04.3.tar.xz.sig
 Summary  : Common libraries for KDE PIM
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -83,16 +83,17 @@ locales components for the pimcommon package.
 
 
 %prep
-%setup -q -n pimcommon-19.04.2
+%setup -q -n pimcommon-19.04.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1559921105
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562958949
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -101,11 +102,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1559921105
+export SOURCE_DATE_EPOCH=1562958949
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pimcommon
 cp COPYING %{buildroot}/usr/share/package-licenses/pimcommon/COPYING
@@ -258,9 +259,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimCommon.so.5
-/usr/lib64/libKF5PimCommon.so.5.11.2
+/usr/lib64/libKF5PimCommon.so.5.11.3
 /usr/lib64/libKF5PimCommonAkonadi.so.5
-/usr/lib64/libKF5PimCommonAkonadi.so.5.11.2
+/usr/lib64/libKF5PimCommonAkonadi.so.5.11.3
 /usr/lib64/qt5/plugins/designer/pimcommonwidgets.so
 
 %files license
