@@ -6,7 +6,7 @@
 #
 Name     : pimcommon
 Version  : 19.04.3
-Release  : 10
+Release  : 11
 URL      : https://download.kde.org/stable/applications/19.04.3/src/pimcommon-19.04.3.tar.xz
 Source0  : https://download.kde.org/stable/applications/19.04.3/src/pimcommon-19.04.3.tar.xz
 Source99 : https://download.kde.org/stable/applications/19.04.3/src/pimcommon-19.04.3.tar.xz.sig
