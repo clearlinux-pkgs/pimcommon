@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : pimcommon
-Version  : 19.04.3
-Release  : 11
-URL      : https://download.kde.org/stable/applications/19.04.3/src/pimcommon-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/pimcommon-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/pimcommon-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 12
+URL      : https://download.kde.org/stable/applications/19.08.0/src/pimcommon-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/pimcommon-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/pimcommon-19.08.0.tar.xz.sig
 Summary  : Common libraries for KDE PIM
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -22,7 +22,6 @@ BuildRequires : akonadi-dev
 BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
-BuildRequires : grantlee-dev
 BuildRequires : kcontacts-dev
 BuildRequires : kimap-dev
 BuildRequires : kimap-staticdev
@@ -83,16 +82,17 @@ locales components for the pimcommon package.
 
 
 %prep
-%setup -q -n pimcommon-19.04.3
+%setup -q -n pimcommon-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562958949
+export SOURCE_DATE_EPOCH=1565929685
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -106,7 +106,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1562958949
+export SOURCE_DATE_EPOCH=1565929685
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pimcommon
 cp COPYING %{buildroot}/usr/share/package-licenses/pimcommon/COPYING
@@ -121,8 +121,8 @@ popd
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/xdg/pimcommon.categories
-/usr/share/xdg/pimcommon.renamecategories
+/usr/share/qlogging-categories5/pimcommon.categories
+/usr/share/qlogging-categories5/pimcommon.renamecategories
 
 %files dev
 %defattr(-,root,root,-)
@@ -140,7 +140,6 @@ popd
 /usr/include/KF5/PimCommon/CustomToolsViewInterface
 /usr/include/KF5/PimCommon/CustomToolsWidgetng
 /usr/include/KF5/PimCommon/CustomTreeView
-/usr/include/KF5/PimCommon/GenericGrantleeFormatter
 /usr/include/KF5/PimCommon/GenericPlugin
 /usr/include/KF5/PimCommon/GenericPluginManager
 /usr/include/KF5/PimCommon/KActionMenuChangeCase
@@ -150,7 +149,6 @@ popd
 /usr/include/KF5/PimCommon/LogActivitiesManager
 /usr/include/KF5/PimCommon/MigrateApplicationFiles
 /usr/include/KF5/PimCommon/MigrateFileInfo
-/usr/include/KF5/PimCommon/MinimumComboBox
 /usr/include/KF5/PimCommon/NetworkManager
 /usr/include/KF5/PimCommon/NetworkUtil
 /usr/include/KF5/PimCommon/PimCommonSettings
@@ -186,7 +184,6 @@ popd
 /usr/include/KF5/pimcommon/autocorrection.h
 /usr/include/KF5/pimcommon/autocorrectionlanguage.h
 /usr/include/KF5/pimcommon/autocorrectionwidget.h
-/usr/include/KF5/pimcommon/config-pimcommon.h
 /usr/include/KF5/pimcommon/configureimmutablewidgetutils.h
 /usr/include/KF5/pimcommon/configureplugindialog.h
 /usr/include/KF5/pimcommon/configurepluginslistwidget.h
@@ -196,7 +193,6 @@ popd
 /usr/include/KF5/pimcommon/customtoolsviewinterface.h
 /usr/include/KF5/pimcommon/customtoolswidgetng.h
 /usr/include/KF5/pimcommon/customtreeview.h
-/usr/include/KF5/pimcommon/genericgrantleeformatter.h
 /usr/include/KF5/pimcommon/genericplugin.h
 /usr/include/KF5/pimcommon/genericpluginmanager.h
 /usr/include/KF5/pimcommon/imapresourcesettings.h
@@ -207,7 +203,6 @@ popd
 /usr/include/KF5/pimcommon/logactivitiesmanager.h
 /usr/include/KF5/pimcommon/migrateapplicationfiles.h
 /usr/include/KF5/pimcommon/migratefileinfo.h
-/usr/include/KF5/pimcommon/minimumcombobox.h
 /usr/include/KF5/pimcommon/networkmanager.h
 /usr/include/KF5/pimcommon/networkutil.h
 /usr/include/KF5/pimcommon/pimcommon_export.h
@@ -259,9 +254,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimCommon.so.5
-/usr/lib64/libKF5PimCommon.so.5.11.3
+/usr/lib64/libKF5PimCommon.so.5.12.0
 /usr/lib64/libKF5PimCommonAkonadi.so.5
-/usr/lib64/libKF5PimCommonAkonadi.so.5.11.3
+/usr/lib64/libKF5PimCommonAkonadi.so.5.12.0
 /usr/lib64/qt5/plugins/designer/pimcommonwidgets.so
 
 %files license
