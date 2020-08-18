@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : pimcommon
-Version  : 20.04.2
-Release  : 25
-URL      : https://download.kde.org/stable/release-service/20.04.2/src/pimcommon-20.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.2/src/pimcommon-20.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.2/src/pimcommon-20.04.2.tar.xz.sig
+Version  : 20.08.0
+Release  : 26
+URL      : https://download.kde.org/stable/release-service/20.08.0/src/pimcommon-20.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.0/src/pimcommon-20.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.0/src/pimcommon-20.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -19,13 +19,16 @@ Requires: pimcommon-license = %{version}-%{release}
 Requires: pimcommon-locales = %{version}-%{release}
 BuildRequires : akonadi-contacts-dev
 BuildRequires : akonadi-dev
+BuildRequires : akonadi-mime-dev
+BuildRequires : akonadi-search-dev
 BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
 BuildRequires : karchive-dev
+BuildRequires : kcalendarcore-dev
+BuildRequires : kcmutils-dev
 BuildRequires : kcodecs-dev
-BuildRequires : kcompletion-dev
 BuildRequires : kconfig-dev
 BuildRequires : kconfigwidgets-dev
 BuildRequires : kcontacts-dev
@@ -36,6 +39,7 @@ BuildRequires : kimap-staticdev
 BuildRequires : kio-dev
 BuildRequires : kitemmodels-dev
 BuildRequires : kjobwidgets-dev
+BuildRequires : kldap-dev
 BuildRequires : kmime-dev
 BuildRequires : knewstuff-dev
 BuildRequires : kpimtextedit-dev
@@ -96,15 +100,15 @@ locales components for the pimcommon package.
 
 
 %prep
-%setup -q -n pimcommon-20.04.2
-cd %{_builddir}/pimcommon-20.04.2
+%setup -q -n pimcommon-20.08.0
+cd %{_builddir}/pimcommon-20.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591923931
+export SOURCE_DATE_EPOCH=1597734099
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -116,15 +120,15 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591923931
+export SOURCE_DATE_EPOCH=1597734099
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pimcommon
-cp %{_builddir}/pimcommon-20.04.2/COPYING %{buildroot}/usr/share/package-licenses/pimcommon/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/pimcommon-20.04.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/pimcommon/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/pimcommon-20.08.0/COPYING %{buildroot}/usr/share/package-licenses/pimcommon/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/pimcommon-20.08.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/pimcommon/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -145,15 +149,18 @@ popd
 /usr/include/KF5/PimCommon/AutoCorrection
 /usr/include/KF5/PimCommon/AutoCorrectionLanguage
 /usr/include/KF5/PimCommon/AutoCorrectionWidget
+/usr/include/KF5/PimCommon/BroadcastStatus
 /usr/include/KF5/PimCommon/ConfigureImmutableWidgetUtils
 /usr/include/KF5/PimCommon/ConfigurePluginDialog
 /usr/include/KF5/PimCommon/ConfigurePluginsListWidget
 /usr/include/KF5/PimCommon/ConfigurePluginsWidget
+/usr/include/KF5/PimCommon/CustomLogWidget
 /usr/include/KF5/PimCommon/CustomToolsPlugin
 /usr/include/KF5/PimCommon/CustomToolsPluginManager
 /usr/include/KF5/PimCommon/CustomToolsViewInterface
 /usr/include/KF5/PimCommon/CustomToolsWidgetng
 /usr/include/KF5/PimCommon/CustomTreeView
+/usr/include/KF5/PimCommon/EmailValidator
 /usr/include/KF5/PimCommon/GenericPlugin
 /usr/include/KF5/PimCommon/GenericPluginManager
 /usr/include/KF5/PimCommon/KActionMenuChangeCase
@@ -176,36 +183,44 @@ popd
 /usr/include/KF5/PimCommon/TemplateListWidget
 /usr/include/KF5/PimCommon/TemplateManager
 /usr/include/KF5/PimCommon/TranslatorWidget
+/usr/include/KF5/PimCommonAkonadi/AddresseeLineEdit
 /usr/include/KF5/PimCommonAkonadi/AnnotationDialog
 /usr/include/KF5/PimCommonAkonadi/CheckedCollectionWidget
 /usr/include/KF5/PimCommonAkonadi/CollectionAclPage
 /usr/include/KF5/PimCommonAkonadi/CollectionAnnotationsAttribute
 /usr/include/KF5/PimCommonAkonadi/CollectionTypeUtil
+/usr/include/KF5/PimCommonAkonadi/CompletionConfigureDialog
+/usr/include/KF5/PimCommonAkonadi/CompletionOrderEditor
 /usr/include/KF5/PimCommonAkonadi/ContentTypeWidget
 /usr/include/KF5/PimCommonAkonadi/CreateResource
-/usr/include/KF5/PimCommonAkonadi/FetchRecursiveCollectionsJob
 /usr/include/KF5/PimCommonAkonadi/GenericPluginInterface
 /usr/include/KF5/PimCommonAkonadi/ImapAclAttribute
 /usr/include/KF5/PimCommonAkonadi/ImapResourceCapabilitiesManager
 /usr/include/KF5/PimCommonAkonadi/IncidencesForWidget
+/usr/include/KF5/PimCommonAkonadi/LdapSearchDialog
 /usr/include/KF5/PimCommonAkonadi/MailUtil
 /usr/include/KF5/PimCommonAkonadi/ManageServerSideSubscriptionJob
 /usr/include/KF5/PimCommonAkonadi/PluginInterface
+/usr/include/KF5/PimCommonAkonadi/ProgressManagerAkonadi
+/usr/include/KF5/PimCommonAkonadi/RecentAddresses
 /usr/include/KF5/PimCommonAkonadi/SelectMultiCollectionDialog
 /usr/include/KF5/pimcommon/abstractgenericplugin.h
 /usr/include/KF5/pimcommon/abstractgenericplugininterface.h
 /usr/include/KF5/pimcommon/autocorrection.h
 /usr/include/KF5/pimcommon/autocorrectionlanguage.h
 /usr/include/KF5/pimcommon/autocorrectionwidget.h
+/usr/include/KF5/pimcommon/broadcaststatus.h
 /usr/include/KF5/pimcommon/configureimmutablewidgetutils.h
 /usr/include/KF5/pimcommon/configureplugindialog.h
 /usr/include/KF5/pimcommon/configurepluginslistwidget.h
 /usr/include/KF5/pimcommon/configurepluginswidget.h
+/usr/include/KF5/pimcommon/customlogwidget.h
 /usr/include/KF5/pimcommon/customtoolsplugin.h
 /usr/include/KF5/pimcommon/customtoolspluginmanager.h
 /usr/include/KF5/pimcommon/customtoolsviewinterface.h
 /usr/include/KF5/pimcommon/customtoolswidgetng.h
 /usr/include/KF5/pimcommon/customtreeview.h
+/usr/include/KF5/pimcommon/emailvalidator.h
 /usr/include/KF5/pimcommon/genericplugin.h
 /usr/include/KF5/pimcommon/genericpluginmanager.h
 /usr/include/KF5/pimcommon/imapresourcesettings.h
@@ -232,22 +247,27 @@ popd
 /usr/include/KF5/pimcommon/templatemanager.h
 /usr/include/KF5/pimcommon/translatorwidget.h
 /usr/include/KF5/pimcommon_version.h
+/usr/include/KF5/pimcommonakonadi/addresseelineedit.h
 /usr/include/KF5/pimcommonakonadi/annotationdialog.h
 /usr/include/KF5/pimcommonakonadi/checkedcollectionwidget.h
 /usr/include/KF5/pimcommonakonadi/collectionaclpage.h
 /usr/include/KF5/pimcommonakonadi/collectionannotationsattribute.h
 /usr/include/KF5/pimcommonakonadi/collectiontypeutil.h
+/usr/include/KF5/pimcommonakonadi/completionconfiguredialog.h
+/usr/include/KF5/pimcommonakonadi/completionordereditor.h
 /usr/include/KF5/pimcommonakonadi/contenttypewidget.h
 /usr/include/KF5/pimcommonakonadi/createresource.h
-/usr/include/KF5/pimcommonakonadi/fetchrecursivecollectionsjob.h
 /usr/include/KF5/pimcommonakonadi/genericplugininterface.h
 /usr/include/KF5/pimcommonakonadi/imapaclattribute.h
 /usr/include/KF5/pimcommonakonadi/imapresourcecapabilitiesmanager.h
 /usr/include/KF5/pimcommonakonadi/incidencesforwidget.h
+/usr/include/KF5/pimcommonakonadi/ldapsearchdialog.h
 /usr/include/KF5/pimcommonakonadi/mailutil.h
 /usr/include/KF5/pimcommonakonadi/manageserversidesubscriptionjob.h
 /usr/include/KF5/pimcommonakonadi/pimcommonakonadi_export.h
 /usr/include/KF5/pimcommonakonadi/plugininterface.h
+/usr/include/KF5/pimcommonakonadi/progressmanagerakonadi.h
+/usr/include/KF5/pimcommonakonadi/recentaddresses.h
 /usr/include/KF5/pimcommonakonadi/selectmulticollectiondialog.h
 /usr/include/KF5/pimcommonakonadi_version.h
 /usr/lib64/cmake/KF5PimCommon/KF5PimCommonConfig.cmake
@@ -266,9 +286,10 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimCommon.so.5
-/usr/lib64/libKF5PimCommon.so.5.14.2
+/usr/lib64/libKF5PimCommon.so.5.15.0
 /usr/lib64/libKF5PimCommonAkonadi.so.5
-/usr/lib64/libKF5PimCommonAkonadi.so.5.14.2
+/usr/lib64/libKF5PimCommonAkonadi.so.5.15.0
+/usr/lib64/qt5/plugins/designer/pimcommoniakonadiwidgets.so
 /usr/lib64/qt5/plugins/designer/pimcommonwidgets.so
 
 %files license
