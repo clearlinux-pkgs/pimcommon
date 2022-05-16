@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : pimcommon
-Version  : 22.04.0
-Release  : 42
-URL      : https://download.kde.org/stable/release-service/22.04.0/src/pimcommon-22.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.04.0/src/pimcommon-22.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.04.0/src/pimcommon-22.04.0.tar.xz.sig
+Version  : 22.04.1
+Release  : 43
+URL      : https://download.kde.org/stable/release-service/22.04.1/src/pimcommon-22.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.1/src/pimcommon-22.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.1/src/pimcommon-22.04.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0
@@ -101,15 +101,15 @@ locales components for the pimcommon package.
 
 
 %prep
-%setup -q -n pimcommon-22.04.0
-cd %{_builddir}/pimcommon-22.04.0
+%setup -q -n pimcommon-22.04.1
+cd %{_builddir}/pimcommon-22.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1650804822
+export SOURCE_DATE_EPOCH=1652660924
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -125,19 +125,19 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1650804822
+export SOURCE_DATE_EPOCH=1652660924
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pimcommon
-cp %{_builddir}/pimcommon-22.04.0/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/pimcommon/c085897bc39e05746ffd2d889a6e84ff1b7ae2d9
-cp %{_builddir}/pimcommon-22.04.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/pimcommon/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-cp %{_builddir}/pimcommon-22.04.0/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/pimcommon/8287b608d3fa40ef401339fd907ca1260c964123
-cp %{_builddir}/pimcommon-22.04.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/pimcommon/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/pimcommon-22.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/pimcommon/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/pimcommon-22.04.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/pimcommon/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/pimcommon-22.04.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/pimcommon/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/pimcommon-22.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/pimcommon/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/pimcommon-22.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/pimcommon/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/pimcommon-22.04.0/metainfo.yaml.license %{buildroot}/usr/share/package-licenses/pimcommon/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4
+cp %{_builddir}/pimcommon-22.04.1/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/pimcommon/c085897bc39e05746ffd2d889a6e84ff1b7ae2d9
+cp %{_builddir}/pimcommon-22.04.1/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/pimcommon/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/pimcommon-22.04.1/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/pimcommon/8287b608d3fa40ef401339fd907ca1260c964123
+cp %{_builddir}/pimcommon-22.04.1/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/pimcommon/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/pimcommon-22.04.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/pimcommon/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/pimcommon-22.04.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/pimcommon/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/pimcommon-22.04.1/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/pimcommon/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/pimcommon-22.04.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/pimcommon/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/pimcommon-22.04.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/pimcommon/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/pimcommon-22.04.1/metainfo.yaml.license %{buildroot}/usr/share/package-licenses/pimcommon/7ff5a7dd2c915b2b34329c892e06917c5f82f3a4
 pushd clr-build
 %make_install
 popd
@@ -295,9 +295,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimCommon.so.5
-/usr/lib64/libKF5PimCommon.so.5.20.0
+/usr/lib64/libKF5PimCommon.so.5.20.1
 /usr/lib64/libKF5PimCommonAkonadi.so.5
-/usr/lib64/libKF5PimCommonAkonadi.so.5.20.0
+/usr/lib64/libKF5PimCommonAkonadi.so.5.20.1
 /usr/lib64/qt5/plugins/designer/pimcommonakonadiwidgets.so
 /usr/lib64/qt5/plugins/designer/pimcommonwidgets.so
 
