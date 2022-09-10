@@ -1,10 +1,14 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-libkdepim-dev
-kmime-dev
-kimap-dev
-kcontacts-dev
 akonadi-contacts-dev
-boost-dev
 akonadi-dev
+akonadi-mime-dev
+boost-dev
+grantlee-dev
+grantleetheme-dev
+kcalendarcore-dev
+kcontacts-dev
+kimap-dev
 kimap-staticdev
+kmime-dev
+libkdepim-dev
