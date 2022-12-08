@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : pimcommon
-Version  : 22.08.3
-Release  : 49
-URL      : https://download.kde.org/stable/release-service/22.08.3/src/pimcommon-22.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.08.3/src/pimcommon-22.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.08.3/src/pimcommon-22.08.3.tar.xz.sig
+Version  : 22.12.0
+Release  : 50
+URL      : https://download.kde.org/stable/release-service/22.12.0/src/pimcommon-22.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.12.0/src/pimcommon-22.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.12.0/src/pimcommon-22.12.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0
@@ -101,15 +101,15 @@ locales components for the pimcommon package.
 
 
 %prep
-%setup -q -n pimcommon-22.08.3
-cd %{_builddir}/pimcommon-22.08.3
+%setup -q -n pimcommon-22.12.0
+cd %{_builddir}/pimcommon-22.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1667887514
+export SOURCE_DATE_EPOCH=1670542691
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -125,7 +125,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1667887514
+export SOURCE_DATE_EPOCH=1670542691
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pimcommon
 cp %{_builddir}/pimcommon-%{version}/.codespellrc.license %{buildroot}/usr/share/package-licenses/pimcommon/c011fda7746c087a127999da1c4044854ee42238 || :
@@ -156,9 +156,6 @@ popd
 %defattr(-,root,root,-)
 /usr/include/KF5/PimCommon/PimCommon/AbstractGenericPlugin
 /usr/include/KF5/PimCommon/PimCommon/AbstractGenericPluginInterface
-/usr/include/KF5/PimCommon/PimCommon/AutoCorrection
-/usr/include/KF5/PimCommon/PimCommon/AutoCorrectionLanguage
-/usr/include/KF5/PimCommon/PimCommon/AutoCorrectionWidget
 /usr/include/KF5/PimCommon/PimCommon/BroadcastStatus
 /usr/include/KF5/PimCommon/PimCommon/ConfigureImmutableWidgetUtils
 /usr/include/KF5/PimCommon/PimCommon/ConfigurePluginDialog
@@ -179,23 +176,19 @@ popd
 /usr/include/KF5/PimCommon/PimCommon/MigrateApplicationFiles
 /usr/include/KF5/PimCommon/PimCommon/MigrateFileInfo
 /usr/include/KF5/PimCommon/PimCommon/NetworkManager
-/usr/include/KF5/PimCommon/PimCommon/PimCommonSettings
 /usr/include/KF5/PimCommon/PimCommon/PimUtil
 /usr/include/KF5/PimCommon/PimCommon/PluginUtil
 /usr/include/KF5/PimCommon/PimCommon/PurposeMenuWidget
 /usr/include/KF5/PimCommon/PimCommon/RenameFileDialog
-/usr/include/KF5/PimCommon/PimCommon/RichTexteditWithAutoCorrection
 /usr/include/KF5/PimCommon/PimCommon/ShareServiceUrlManager
 /usr/include/KF5/PimCommon/PimCommon/SimpleStringListEditor
 /usr/include/KF5/PimCommon/PimCommon/SpellCheckLineEdit
 /usr/include/KF5/PimCommon/PimCommon/TemplateListWidget
 /usr/include/KF5/PimCommon/PimCommon/TemplateManager
+/usr/include/KF5/PimCommon/PimCommon/TranslatorConfigureDialog
 /usr/include/KF5/PimCommon/PimCommon/TranslatorWidget
 /usr/include/KF5/PimCommon/pimcommon/abstractgenericplugin.h
 /usr/include/KF5/PimCommon/pimcommon/abstractgenericplugininterface.h
-/usr/include/KF5/PimCommon/pimcommon/autocorrection.h
-/usr/include/KF5/PimCommon/pimcommon/autocorrectionlanguage.h
-/usr/include/KF5/PimCommon/pimcommon/autocorrectionwidget.h
 /usr/include/KF5/PimCommon/pimcommon/broadcaststatus.h
 /usr/include/KF5/PimCommon/pimcommon/configureimmutablewidgetutils.h
 /usr/include/KF5/PimCommon/pimcommon/configureplugindialog.h
@@ -218,18 +211,16 @@ popd
 /usr/include/KF5/PimCommon/pimcommon/migratefileinfo.h
 /usr/include/KF5/PimCommon/pimcommon/networkmanager.h
 /usr/include/KF5/PimCommon/pimcommon/pimcommon_export.h
-/usr/include/KF5/PimCommon/pimcommon/pimcommonsetting_base.h
-/usr/include/KF5/PimCommon/pimcommon/pimcommonsettings.h
 /usr/include/KF5/PimCommon/pimcommon/pimutil.h
 /usr/include/KF5/PimCommon/pimcommon/pluginutil.h
 /usr/include/KF5/PimCommon/pimcommon/purposemenuwidget.h
 /usr/include/KF5/PimCommon/pimcommon/renamefiledialog.h
-/usr/include/KF5/PimCommon/pimcommon/richtexteditwithautocorrection.h
 /usr/include/KF5/PimCommon/pimcommon/shareserviceurlmanager.h
 /usr/include/KF5/PimCommon/pimcommon/simplestringlisteditor.h
 /usr/include/KF5/PimCommon/pimcommon/spellchecklineedit.h
 /usr/include/KF5/PimCommon/pimcommon/templatelistwidget.h
 /usr/include/KF5/PimCommon/pimcommon/templatemanager.h
+/usr/include/KF5/PimCommon/pimcommon/translatorconfiguredialog.h
 /usr/include/KF5/PimCommon/pimcommon/translatorwidget.h
 /usr/include/KF5/PimCommon/pimcommon_version.h
 /usr/include/KF5/PimCommonAkonadi/PimCommonAkonadi/AddresseeLineEdit
@@ -276,6 +267,25 @@ popd
 /usr/include/KF5/PimCommonAkonadi/pimcommonakonadi/recentaddresses.h
 /usr/include/KF5/PimCommonAkonadi/pimcommonakonadi/selectmulticollectiondialog.h
 /usr/include/KF5/PimCommonAkonadi/pimcommonakonadi_version.h
+/usr/include/KF5/PimCommonAutoCorrection/PimCommonAutoCorrection/AutoCorrection
+/usr/include/KF5/PimCommonAutoCorrection/PimCommonAutoCorrection/AutoCorrectionLanguage
+/usr/include/KF5/PimCommonAutoCorrection/PimCommonAutoCorrection/AutoCorrectionSettings
+/usr/include/KF5/PimCommonAutoCorrection/PimCommonAutoCorrection/AutoCorrectionTextEdit
+/usr/include/KF5/PimCommonAutoCorrection/PimCommonAutoCorrection/AutoCorrectionUtils
+/usr/include/KF5/PimCommonAutoCorrection/PimCommonAutoCorrection/AutoCorrectionWidget
+/usr/include/KF5/PimCommonAutoCorrection/PimCommonAutoCorrection/PimCommonAutoCorrectionSettings
+/usr/include/KF5/PimCommonAutoCorrection/PimCommonAutoCorrection/SelectSpecialCharDialog
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection/autocorrection.h
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection/autocorrectionlanguage.h
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection/autocorrectionsettings.h
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection/autocorrectiontextedit.h
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection/autocorrectionutils.h
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection/autocorrectionwidget.h
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection/pimcommonautocorrection_export.h
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection/pimcommonautocorrectionsetting_base.h
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection/pimcommonautocorrectionsettings.h
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection/selectspecialchardialog.h
+/usr/include/KF5/PimCommonAutoCorrection/pimcommonautocorrection_version.h
 /usr/lib64/cmake/KF5PimCommon/KF5PimCommonConfig.cmake
 /usr/lib64/cmake/KF5PimCommon/KF5PimCommonConfigVersion.cmake
 /usr/lib64/cmake/KF5PimCommon/KF5PimCommonTargets-relwithdebinfo.cmake
@@ -284,17 +294,25 @@ popd
 /usr/lib64/cmake/KF5PimCommonAkonadi/KF5PimCommonAkonadiConfigVersion.cmake
 /usr/lib64/cmake/KF5PimCommonAkonadi/KF5PimCommonAkonadiTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/KF5PimCommonAkonadi/KF5PimCommonAkonadiTargets.cmake
+/usr/lib64/cmake/KF5PimCommonAutoCorrection/KF5PimCommonAutoCorrectionConfig.cmake
+/usr/lib64/cmake/KF5PimCommonAutoCorrection/KF5PimCommonAutoCorrectionConfigVersion.cmake
+/usr/lib64/cmake/KF5PimCommonAutoCorrection/KF5PimCommonAutoCorrectionTargets-relwithdebinfo.cmake
+/usr/lib64/cmake/KF5PimCommonAutoCorrection/KF5PimCommonAutoCorrectionTargets.cmake
 /usr/lib64/libKF5PimCommon.so
 /usr/lib64/libKF5PimCommonAkonadi.so
+/usr/lib64/libKF5PimCommonAutoCorrection.so
 /usr/lib64/qt5/mkspecs/modules/qt_PimCommon.pri
 /usr/lib64/qt5/mkspecs/modules/qt_PimCommonAkonadi.pri
+/usr/lib64/qt5/mkspecs/modules/qt_PimCommonAutoCorrection.pri
 
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5PimCommon.so.5
-/usr/lib64/libKF5PimCommon.so.5.21.3
+/usr/lib64/libKF5PimCommon.so.5.22.0
 /usr/lib64/libKF5PimCommonAkonadi.so.5
-/usr/lib64/libKF5PimCommonAkonadi.so.5.21.3
+/usr/lib64/libKF5PimCommonAkonadi.so.5.22.0
+/usr/lib64/libKF5PimCommonAutoCorrection.so.5
+/usr/lib64/libKF5PimCommonAutoCorrection.so.5.22.0
 /usr/lib64/qt5/plugins/designer/pimcommonakonadiwidgets.so
 /usr/lib64/qt5/plugins/designer/pimcommonwidgets.so
 
