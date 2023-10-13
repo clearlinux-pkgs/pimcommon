@@ -7,7 +7,7 @@
 #
 Name     : pimcommon
 Version  : 23.08.1
-Release  : 72
+Release  : 73
 URL      : https://download.kde.org/stable/release-service/23.08.1/src/pimcommon-23.08.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.08.1/src/pimcommon-23.08.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.08.1/src/pimcommon-23.08.1.tar.xz.sig
