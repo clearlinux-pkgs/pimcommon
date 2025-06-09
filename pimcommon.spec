@@ -9,7 +9,7 @@
 #
 Name     : pimcommon
 Version  : 25.04.1
-Release  : 120
+Release  : 121
 URL      : https://download.kde.org/stable/release-service/25.04.1/src/pimcommon-25.04.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/25.04.1/src/pimcommon-25.04.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/25.04.1/src/pimcommon-25.04.1.tar.xz.sig
